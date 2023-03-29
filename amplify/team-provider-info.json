@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-tienamplifybe-dev-163522-authRole",
+      "UnauthRoleArn": "arn:aws:iam::756317035274:role/amplify-tienamplifybe-dev-163522-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::756317035274:role/amplify-tienamplifybe-dev-163522-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-tienamplifybe-dev-163522-deployment",
+      "UnauthRoleName": "amplify-tienamplifybe-dev-163522-unauthRole",
+      "StackName": "amplify-tienamplifybe-dev-163522",
+      "StackId": "arn:aws:cloudformation:us-east-1:756317035274:stack/amplify-tienamplifybe-dev-163522/f3b5c220-cb54-11ed-82cb-12ec7f1ad233",
+      "AmplifyAppId": "dmnrmpnwpzpn0"
+    },
+    "categories": {
+      "auth": {
+        "TienAmplifyBE": {}
+      }
+    }
+  }
+}
