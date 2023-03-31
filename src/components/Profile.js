@@ -19,20 +19,21 @@ export function Profile () {
     const maxCharacters = 250;
 
     useEffect(() => {
+        async function fetchUserAndLoadUpdatedStatus() {
+            const userData = await fetchUser();
+
+            if (userData) {
+                setUser(userData);
+                const newStatus = await loadUpdatedStatus(userData);
+                setStatus(newStatus);
+            }
+        }
+
         if (location.pathname === '/profile') {
             fetchUserAndLoadUpdatedStatus();
         }
     }, [location]);
 
-    async function fetchUserAndLoadUpdatedStatus() {
-        const userData = await fetchUser();
-
-        if (userData) {
-            setUser(userData);
-            const newStatus = await loadUpdatedStatus(userData);
-            setStatus(newStatus);
-        }
-    }
     async function fetchUser() {
         try {
             const userData = await Auth.currentAuthenticatedUser();
