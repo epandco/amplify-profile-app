@@ -9,7 +9,7 @@ export function SignIn() {
     const { route } = useAuthenticator((context) => [context.route]);
     const location = useLocation();
     const navigate = useNavigate();
-    let from = location.state?.from?.pathname || '/';
+    let from = location.state?.from?.pathname || '/profile';
     useEffect(() => {
         if (route === 'authenticated') {
             navigate(from, { replace: true });

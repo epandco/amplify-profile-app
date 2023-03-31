@@ -5,30 +5,17 @@ import { Auth } from 'aws-amplify';
 import {Outlet} from "react-router";
 
 
-export function RequireAuth ({ children }) {
     // const user = await Auth.currentAuthenticatedUser();
     // const session = await Auth.currentSession();
-    const location = useLocation();
-    const { route } = useAuthenticator((context) => [context.route]);
 
-    const isLoggedIn = () => {
+    export function RequireAuth({ children }) {
+        const location = useLocation();
+        const { route } = useAuthenticator((context) => [context.route]);
         if (route !== 'authenticated') {
-            return false
+            return <Navigate to="/login" state={{ from: location }} replace />;
         }
-        return true;
-    };
-
-    if (!isLoggedIn()) {
-        return <Navigate to="/login" state={{ from: location }} replace />;
+        return children;
     }
 
-    return children;
-    // const location = useLocation();
-    // const { route } = useAuthenticator((context) => [context.route]);
-    // if (route !== 'authenticated') {
-    //     return <Navigate to="/SignIn" state={{ from: location }} replace />;
-    // }
-    // return children;
-}
 
 // export default RequireAuth;

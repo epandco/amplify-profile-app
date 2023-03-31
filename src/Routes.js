@@ -4,15 +4,21 @@ import { RequireAuth } from './RequireAuth';
 import { PageLayout } from './components/PageLayout';
 import { SignIn } from './components/SignIn';
 import { Profile } from './components/Profile';
+import { Home } from './components/Home';
+
 export function MyRoutes() {
     return (
         <BrowserRouter>
-            <PageLayout>
                 <Routes>
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/login" element={<SignIn />} />
+                    <Route path="/" element={<PageLayout />}>
+                        <Route index element={<Home />} />
+                        <Route path="/profile" element={
+                                <RequireAuth>
+                                    <Profile />
+                                </RequireAuth>}/>
+                        <Route path="/login" element={<SignIn />} />
+                    </Route>
                 </Routes>
-            </PageLayout>
 
             {/*<Routes>*/}
             {/*    <Route path="/" element={<PageLayout />}>*/}

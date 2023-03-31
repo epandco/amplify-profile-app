@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router';
-import { useAuthenticator, Button, View } from '@aws-amplify/ui-react';
+import { useAuthenticator, Button, View, Heading } from '@aws-amplify/ui-react';
 import { Layout } from 'antd';
 import styled from 'styled-components';
 import '@aws-amplify/ui-react/styles.css';
@@ -63,17 +63,29 @@ const StyledContent = styled(Content)`
 `;
 
 const StyledHeader = styled(Header)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: black;
-  button {
-    &.amplify-button {
-      background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    background-color: #1877f2;
+    height: 56px;
+`;
+
+const NavButton = styled(Button)`
+    background-color: transparent;
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    font-size: 14px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
     }
-  }
-`
+`;
 
 const StyledFooter = styled(Footer)`
   &.ant-layout-footer {
@@ -112,19 +124,20 @@ export function PageLayout() {
             <nav>
                 <StyledHeader>
 
-                    <Button onClick={() => navigate('/profile')}>
+                    <NavButton onClick={() => navigate('/profile')}>
                         Profile
-                    </Button>
+                    </NavButton>
                     {route !== 'authenticated' ? (
-                        <Button onClick={() => navigate('/login')}>Login</Button>
+                        <NavButton onClick={() => navigate('/login')}>Login</NavButton>
                     ) : (
-                        <Button onClick={() => logOut()}>Logout</Button>
+                        <NavButton onClick={() => logOut()}>Logout</NavButton>
                     )}
                 </StyledHeader>
             </nav>
-            <main>
-                <Outlet />
-            </main>
+            <View>
+                {route === 'authenticated' ? 'You are logged in!' : 'Please Login!'}
+            </View>
+            <Outlet />
             <StyledFooter>
                 Footer
             </StyledFooter>
