@@ -1,0 +1,7 @@
+type StatusUpdates @model @auth(rules: [{allow: owner, operations: [create, update, delete]}, {allow: public, operations: [read, create, update]}]) {
+  id: ID!
+  user_id: ID
+  status: String
+  create_on: AWSDateTime
+}
+ 
